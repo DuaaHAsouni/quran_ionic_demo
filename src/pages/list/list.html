@@ -1,3 +1,5 @@
+
+
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -7,17 +9,86 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+        
+    <div *ngFor="let surah of surahData"> 
+         
+            <ion-grid>
+                    <ion-row style="text-align: center !important">
+                        <ion-col>
+                               
+                                <h5>{{surah.number}}</h5>
+                        </ion-col>
+
+                        <ion-col col-5>
+                                <h3><b>{{surah.name}}</b></h3>
+                        </ion-col>
+
+                        <ion-col>
+                                <h5>{{surah.numberOfAyahs}}</h5>
+                               
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+                    <div *ngFor="let ayah of surah.ayahs; let i = index">
+                           
+                            
+                       <ion-grid>
+                           <ion-row style="text-align: center !important">
+                               <ion-col>
+                                    <h1 style="font-size:20;" *ngIf="i==0">
+                                            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                        
+                                        </h1>
+                                       <img *ngIf="i==0" src={{hr_bismillah}} />
+                               </ion-col>
+                           </ion-row>
+                       </ion-grid>
+                        
+
+                        <ion-grid>
+                                <ion-row>
+                                  <ion-col style="text-align: left !important" >
+                                        <h3  *ngIf="i==0 &&  ayah.text.split('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')[1]!=''">
+                                                <p class="circle">{{ayah.numberInSurah}}</p>
+                                                
+                                        </h3>                     
+                                  </ion-col>
+                                  <ion-col col-10 style="text-align: right !important"> 
+                                        <h3 *ngIf="i==0 &&  ayah.text.split('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')[1]!=''">
+                                                           
+                                                {{ayah.text.split('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ')[1]}}
+                                             
+                                       </h3>
+                                  </ion-col>
+                                </ion-row>
+                              </ion-grid>
+                            
+                              <ion-grid>
+                                    <ion-row >
+                                      <ion-col style="text-align: left !important">
+                                            <h3 *ngIf="i>0">
+                                                    <p class="circle">{{ayah.numberInSurah}}</p>
+                                                
+                                            </h3>                     
+                                      </ion-col>
+                                      <ion-col  col-10 style="font-size: 22px;">
+                                            <p  text-justify text-right *ngIf="i>0" style="line-height: 40px">
+                                                                
+                                                    
+                                                {{ayah.text}}
+                                          
+                                            </p>
+                                      </ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+                                  <hr  *ngIf="i>0" style="height:1px !important">
+
+                        
+                    </div> 
+                   
+                    <img style="height: 100px;width:100%;" src={{hr_surah}} />
+                </div>
 </ion-content>

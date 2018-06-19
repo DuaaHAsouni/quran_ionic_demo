@@ -1,3 +1,31 @@
-page-list {
 
-}
+.circle {
+    background: url(/assets/imgs/verse_no.png);
+      background-size: cover;
+      font-size: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      color: #000;
+  }
+  @font-face {
+    font-family: AppFont;
+    src: url("/assets/fonts/Aayat\ Quraan_034.ttf");
+    }
+
+    body{
+        font-family: 'AppFont' !important;
+    }
+
+    .grid{
+        padding: 0px;
+    }

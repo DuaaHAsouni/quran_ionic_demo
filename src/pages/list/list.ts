@@ -1,37 +1,40 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import 'rxjs/add/operator/map';
+import{Http,Response} from '@angular/http';
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  page: any;
+  //private apiUrl="http://api.alquran.cloud/surah/"+114+"/ar.alafasy";
+  surah_id:any=[];
+  surahData:any=[];
+  hr_bismillah='assets/imgs/hr_bismillah.png'; 
+  hr_surah='assets/imgs/hr_surah.png';
+  verse_no='assets/imgs/verse_no.png';
+  getData(surah_no) {
+    
+     return this.http.get("http://api.alquran.cloud/surah/"+surah_no)
+     .map((res:Response)=>res.json())
+   }
+ getSurah(surah_no)
+   {
+     this.getData(surah_no).subscribe(data => { this.surahData=[data.data];
+       console.log(this.surahData);
+     })
+   }
+ 
+ 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(private http:Http,public navCtrl: NavController, public navParams: NavParams) {
+  this.surah_id = navParams.get('data');
+   this.getSurah(this.surah_id[0].number);
+    this.getData(this.surah_id[0].number);
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
 }

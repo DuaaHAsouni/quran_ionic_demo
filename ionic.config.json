@@ -1,6 +1,6 @@
 {
   "name": "Quran_Ionic",
-  "app_id": "",
+  "app_id": "9918be1c",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

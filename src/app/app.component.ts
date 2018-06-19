@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import{Http,Response} from '@angular/http'
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,17 +15,36 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  private apiUrl="http://api.alquran.cloud/surah";
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  surahs:any=[];
+  pages: any=[];
+
+  getData() {
+    
+     return this.http.get(this.apiUrl)
+     .map((res:Response)=>res.json())
+   }
+
+
+ getSurahList()
+   {
+     this.getData().subscribe(data => { 
+       this.surahs=data.data;
+      
+     })
+   }
+ 
+
+
+
+  constructor(private http: Http,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
+    this.getSurahList();
+    this.getData();
+    
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
-
+  
   }
 
   initializeApp() {
@@ -37,8 +57,9 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    console.log(page);
+    this.nav.setRoot(ListPage,{
+      data:[page]
+    });
   }
 }
