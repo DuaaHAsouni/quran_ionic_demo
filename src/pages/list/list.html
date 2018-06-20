@@ -13,9 +13,9 @@
     <ion-refresher (ionRefresh)="doRefresh($event);">
         <ion-refresher-content
           pullingIcon="arrow-dropdown"
-          pullingText="Pull to refresh"
+          pullingText="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
           refreshingSpinner="circles"
-          refreshingText="بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ">
+          refreshingText="الحَمْدُ للهِ‎">
         </ion-refresher-content>
     </ion-refresher>
     <div *ngFor="let surah of surahData"> 
@@ -32,7 +32,7 @@
                         </ion-col>
 
                         <ion-col>
-                                <h5>{{surah.ayahs.length}}</h5>
+                                <h5>{{surah.numberOfAyahs}}</h5>
                                
                         </ion-col>
                     </ion-row>

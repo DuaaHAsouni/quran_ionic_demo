@@ -40,12 +40,12 @@ export class ListPage {
   this.surah_id = navParams.get('data');
   var index = navParams.get('index');
   console.log(this.surah_id[0].number);
-  // this.getSurah(this.surah_id[0].number);
-    //this.getData(this.surah_id[0].number);
-    this.getTest().subscribe(data => { this.surahData_ALL=[data.data];
-      console.log(this.surahData_ALL);
-     this.surahData = [this.surahData_ALL[0].surahs[index]];
-    });
+  this.getSurah(this.surah_id[0].number);
+    this.getData(this.surah_id[0].number);
+    // this.getTest().subscribe(data => { this.surahData_ALL=[data.data];
+    //   console.log(this.surahData_ALL);
+    //  this.surahData = [this.surahData_ALL[0].surahs[index]];
+    // });
     
 
 
