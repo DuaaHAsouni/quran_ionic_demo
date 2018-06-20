@@ -31,7 +31,9 @@ export class ListPage {
     return this.http.get("build/test.json")
     .map((res:Response) => res.json()); 
    }
-  
+   doRefresh(refresh){
+     refresh.complete();
+   }
  
 
   constructor(private http:Http,public navCtrl: NavController, public navParams: NavParams) {
