@@ -9,7 +9,7 @@
     <ion-list>
  
  
-       <button style="text-align:right" menuClose ion-item *ngFor="let surah of surahs" (click)="openPage(surah)">
+       <button style="text-align:right" menuClose ion-item *ngFor="let surah of surahs let i = index" (click)="openPage(surah,i)">
           <b>{{surah.name}}</b>
       </button> 
     </ion-list>

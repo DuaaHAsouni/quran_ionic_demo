@@ -56,10 +56,11 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    console.log(page);
+  openPage(page,index) {
+    console.log(index);
     this.nav.setRoot(ListPage,{
-      data:[page]
+      data:[page],
+      index:index
     });
   }
 }
